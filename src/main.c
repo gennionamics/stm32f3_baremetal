@@ -14,7 +14,7 @@ loop (void)
 	usart_printf("Hello world!\r\n");
 
 	for (;;)
-		__asm volatile("wfi");
+		__asm volatile("wfe");
 }
 
 int
