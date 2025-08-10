@@ -3,6 +3,8 @@
 #include <stdbool.h>
 
 enum Event {
+	EVENT_FRAME,
+
 	EVENT_count
 };
 
