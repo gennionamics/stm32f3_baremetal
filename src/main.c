@@ -2,6 +2,7 @@
 #include "clock.h"
 #include "event.h"
 #include "frame.h"
+#include "led.h"
 #include "usart.h"
 
 static void
@@ -9,6 +10,7 @@ init (void)
 {
 	clock_init();
 	frame_init();
+	led_init();
 	usart_init();
 }
 
