@@ -6,7 +6,7 @@ CFLAGS  = -std=c11 -O3 -g -flto
 CFLAGS += -funsigned-char -fomit-frame-pointer
 CFLAGS += -Wall -Wextra -Werror
 
-LDFLAGS = -static -nostartfiles -Os -g -flto
+LDFLAGS = -static -nostartfiles -lc_nano -lnosys -Os -g -flto
 LIBNAME = opencm3_stm32f3
 
 SRCS := $(wildcard src/*.c)
