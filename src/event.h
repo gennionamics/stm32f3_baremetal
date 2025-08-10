@@ -4,6 +4,8 @@
 
 enum Event {
 	EVENT_FRAME,
+	EVENT_GYRO_DATA_READY,
+	EVENT_GYRO_RX_FINISHED,
 
 	EVENT_count
 };

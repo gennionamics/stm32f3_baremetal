@@ -6,16 +6,24 @@
 static const uint32_t map_clock[] = {
 	RCC_DMA1,
 	RCC_DMA2,
+	RCC_GPIOA,
 	RCC_GPIOC,
 	RCC_GPIOE,
+	RCC_SPI1,
+	RCC_SYSCFG,
+	RCC_TIM3,
 	RCC_TIM4,
 	RCC_TIM8,
 	RCC_USART1,
 };
 
 static const uint32_t map_reset[] = {
+	RST_GPIOA,
 	RST_GPIOC,
 	RST_GPIOE,
+	RST_SPI1,
+	RST_SYSCFG,
+	RST_TIM3,
 	RST_TIM4,
 	RST_TIM8,
 	RST_USART1,

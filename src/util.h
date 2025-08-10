@@ -1,5 +1,8 @@
 #pragma once
 
+#define PACKED \
+	__attribute__((packed))
+
 #define NELEM(array) \
 	(sizeof(array) / sizeof(*(array)))
 
