@@ -1,3 +1,4 @@
+#include "app.h"
 #include "clock.h"
 #include "event.h"
 #include "frame.h"
@@ -14,17 +15,11 @@ init (void)
 static void
 loop (void)
 {
-	unsigned int i = 0, j = 0;
+	for (;;) {
 
-	for (;;)
-	{
-		// Print the frame count every 1/10 s.
-		if (event_test_and_clear(EVENT_FRAME)) {
-			if (++i == 20) {
-				usart_printf("%d\r\n", j++);
-				i = 0;
-			}
-		}
+		// Step the application on every frame.
+		if (event_test_and_clear(EVENT_FRAME))
+			app_step();
 
 		// Sleep until the next event occurs.
 		__asm volatile("wfe");
