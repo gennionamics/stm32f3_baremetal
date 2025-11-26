@@ -2,11 +2,11 @@ PROJECT     = stm32f3discovery
 DEVICE      = stm32f303vct6
 OPENCM3_DIR = lib/libopencm3
 
-CFLAGS  = -std=c11 -O3 -g -flto
+CFLAGS  = -std=c11 -O3 -g
 CFLAGS += -funsigned-char -fomit-frame-pointer
 CFLAGS += -Wall -Wextra -Werror
 
-LDFLAGS = -static -nostartfiles -lc_nano -lnosys -Os -g -flto
+LDFLAGS = -static -nostartfiles -lc -lnosys -Os -g
 LIBNAME = opencm3_stm32f3
 
 SRCS := $(wildcard src/*.c)
@@ -30,15 +30,13 @@ $(OBJS): $(LIBDEPS)
 $(LIBDEPS):
 	$(Q)$(MAKE) \
 	  -C $(OPENCM3_DIR) \
-	  TARGETS=stm32/f3 \
-	  CFLAGS=-flto
-
+	  TARGETS=stm32/f3
 flash: $(PROJECT).bin
 	@printf "  FLASH   $^\n";
 	$(Q)openocd \
-	  -f /usr/share/openocd/scripts/interface/stlink.cfg \
+	  -f /usr/local/share/openocd/scripts/interface/stlink.cfg \
 	  -c "transport select hla_swd" \
-	  -f /usr/share/openocd/scripts/target/stm32f3x.cfg \
+	  -f /usr/local/share/openocd/scripts/target/stm32f3x.cfg \
 	  -c "init" \
 	  -c "reset halt" \
 	  -c "stm32f3x unlock 0" \
