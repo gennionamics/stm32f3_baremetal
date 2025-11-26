@@ -9,10 +9,19 @@ CFLAGS += -Wall -Wextra -Werror
 LDFLAGS = -static -nostartfiles -lc -lnosys -Os -g
 LIBNAME = opencm3_stm32f3
 
-SRCS := $(wildcard src/*.c)
+# All .c files recursively
+EXTRA_SRCS := $(shell find ../TeImu/Core -type f -name "*.c")
+
+# All directories (for includes)
+EXTRA_DIRS := $(shell find ../TeImu/Core -type d)
+EXTRA_DIRS += src
+
+# Add include dirs to CFLAGS
+CFLAGS += $(foreach d,$(EXTRA_DIRS),-I$(d))
+
+SRCS := $(wildcard src/*.c) $(EXTRA_SRCS)
 OBJS := $(SRCS:.c=.o)
 
-# Default to silent mode, run 'make V=1' for a verbose build.
 ifneq ($(V),1)
 Q := @
 MAKEFLAGS += --no-print-directory
@@ -20,6 +29,8 @@ endif
 
 include $(OPENCM3_DIR)/mk/genlink-config.mk
 include $(OPENCM3_DIR)/mk/gcc-config.mk
+
+LDLIBS += -lnosys -lm
 
 .PHONY: all clean flash
 
